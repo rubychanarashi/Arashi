@@ -1,0 +1,53 @@
+
+public class Quicksort {
+	private int[] numbers;
+	private int number;
+	
+	public void sort(int[] values){
+		//check for empty or null array
+		if(values==null || values.length==0){
+			return;
+		}
+		this.numbers=values;
+		number=values.length;
+		quicksort(0,number-1);
+	}
+	
+	private void quicksort(int low, int high){
+		int i=low, j=high;
+		//get the pivot element form middle of the list
+		int pivot=numbers[low+(high-low)/2];
+		//divide into two lists
+		while(i<=j){
+			//if the current value form the left list is smaller than the pivot
+			//element then get the next element form the left lists
+			while(numbers[i]<pivot){
+				i++;
+			}
+			//if the current value from the right list is larger than the pivot
+			//element then get the next element form the right list
+			while(numbers[j]>pivot){
+				j--;
+			}
+			//if a element in the left is larger than pivot
+			//and in the right is smaller than the pivot
+			//exchange them
+			if(i<=j){
+				exchange(i,j);
+				i++;
+				j--;
+			}
+		}
+		//recursion
+		if(low<j)
+			quicksort(low,j);
+		if(i<high)
+			quicksort(i, high);
+	}
+	private void exchange(int i, int j){
+		int temp=numbers[i];
+		numbers[i]=numbers[j];
+		numbers[j]=temp;
+	}
+
+}
