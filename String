@@ -1,0 +1,83 @@
+public class Multiplication {
+	public String multiply(String num1, String num2) {
+		String result = new String();
+		String store=new String();
+
+		for(int i=0;i<num2.length();i++){
+			String r1=mulNum(num1, num2.charAt(i));
+//			result=AddNum()
+			
+		}
+		return result;
+	}
+
+	private String mulNum(String s1, char c) {
+		int len = s1.length();
+		StringBuffer r = new StringBuffer();
+		int cur = 0;
+		int car = 0;
+		int num2 = c - '0';
+		if (num2 == 0) {
+			return s1;
+		}
+		for (int i = 0; i < len; i++) {
+			char a = s1.charAt(i);
+			int num = a - '0';
+			if (num == 0) {
+				cur = 0;
+				car = 0;
+			} else {
+				if ((num * num2) < 10) {
+					cur = (num * num2) % 10 + car;
+					car = 0;
+				} else {
+					cur = (num * num2) % 10 + car;
+					car = (num * num2) / 10;
+				}
+			}
+			r.append((char) (cur + '0'));
+		}
+		String result = r.toString();
+		return result;
+	}
+
+	private String AddNum(String s1, String s2){
+	    	StringBuffer r=new StringBuffer();
+	    	r.insert(arg0, arg1)
+	    	int len=Math.min(s1.length(), s2.length());
+	    	boolean m=true;
+	    	if(len==s1.length())
+	    		m=true;
+	    	else
+	    		m=false;
+	    	int cur=0;
+	    	int car=0;
+	    	for(int i=0;i<len;i++){
+	    		char a=s1.charAt(i);
+	    		char b=s2.charAt(i);
+	    		int num1=a-'0';
+	    		int num2=b-'0';
+	    		if((num1+num2)<10){
+	    			cur=num1+num2+car;
+	    			car=0;
+	    		}else{
+	    			cur=(num1+num2)%10+car;
+	    			car=(num1+num2)/10;
+	    		}
+	    		r.append((char)(cur+'0'));
+	    	}
+	    	if(m)
+	    	{
+	    	char sl=s2.charAt(len);
+	    	r.append((char)(((sl-'0')+car)+'0'));
+	    	for(int i=len+1;i<s2.length();i++)
+	    		r.append(s2.charAt(i));
+	    	}else{
+	    		char sl=s1.charAt(len);
+		    	r.append((char)(((sl-'0')+car)+'0'));
+		    	for(int i=len+1;i<s1.length();i++)
+		    		r.append(s1.charAt(i));
+	    	}
+	    	return r.toString();
+	    }
+}
